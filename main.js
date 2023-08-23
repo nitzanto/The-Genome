@@ -2,6 +2,7 @@ const VcfProcessor = require("./services/VcfProcessor");
 const AxiosWrapper = require("./services/AxiosWrapper");
 const { Parser } = require("json2csv");
 const {log} = require("util");
+const dotenv = require('dotenv');
 
 const axiosWrapper = new AxiosWrapper();
 const parser = new Parser();
@@ -34,7 +35,7 @@ async function processVcfFile(stream, start, end, minDP, limit, deNovo) {
   let deNovo = process.argv[6];
 
   let fileStream = await getS3FileStream(
-      `s3://${S3_Object_URL}/demo_vcf_multisample.vcf.gz`
+      `s3://${process.S3_Object_URL}/demo_vcf_multisample.vcf.gz`
   );
   await processVcfFile(fileStream, 2059966, 5059966, 5, 5, true);
   console.log("The VCF file has been successfully processed");

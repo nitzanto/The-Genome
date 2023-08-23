@@ -13,8 +13,8 @@ class AxiosWrapper {
     });
 
     let httpsUrl = s3Url.replace(
-        `s3://${S3_Object_URL}`,
-        `https://${S3_Object_URL}.s3.amazonaws.com`
+        `s3://${process.S3_Object_URL}`,
+        `https://${process.S3_Object_URL}.s3.amazonaws.com`
     );
 
     try {
@@ -42,7 +42,7 @@ class AxiosWrapper {
     try {
       // Make API request to fetch variant details
       let response = await this.post(
-          `https://${API_URL}/fetch_variant_details`,
+          `https://${process.API_URL}/fetch_variant_details`,
           {
             chr: row["CHROM"],
             pos: row["POS"],
